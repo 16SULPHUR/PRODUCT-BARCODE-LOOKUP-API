@@ -31,6 +31,15 @@ app.get("/", async (req, res) => {
     res.send("HHHHHH")
 });
 
+app.get("/p", async (req, res) => {
+
+    console.log(req.body)
+
+    // addProductHandler(req, res)
+    // const allProducts = await ProductDetails.find()
+    res.json({"allProducts": "pppppp"})
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on ${PORT}`);
 });
