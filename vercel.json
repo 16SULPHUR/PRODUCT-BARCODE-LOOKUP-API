@@ -1,0 +1,20 @@
+{
+    "version": 2,
+    "name": "product-barcodelookup-api",
+    "builds": [
+        {
+            "src": "app.js"
+        },
+        {
+            "use": "@vercel/node"
+        }
+    ],
+    " routes ": [
+        {
+            "src": "/(.*)"
+        },
+        {
+            "dest": "/app.js"
+        }
+    ]
+}
