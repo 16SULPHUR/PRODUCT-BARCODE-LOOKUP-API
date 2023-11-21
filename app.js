@@ -39,7 +39,7 @@ app.get("/p", async (req, res) => {
 
     console.log(req.query)
 
-    // addProductHandler(req, res)
+    addProductHandler(req, res)
     const allProducts = await ProductDetails.find()
     res.json(allProducts)
 });

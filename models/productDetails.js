@@ -4,6 +4,18 @@ const productDetailsSchema = new mongoose.Schema({
   code: {
     type: Number,
     unique: true
+  },
+  title:{
+    type: String
+  },
+  description:{
+    type: String
+  },
+  rating:{
+    type: String
+  },
+  images:{
+    type: Array
   }
 });
 
