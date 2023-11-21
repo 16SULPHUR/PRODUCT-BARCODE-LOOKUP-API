@@ -11,10 +11,6 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-dotenv.config({
-  path : "./data/config.env"
-});
-
 
 const DB = 'mongodb+srv://akpatil51340:%40Ankit2005@cluster0.lahzobm.mongodb.net/productLookup?retryWrites=true&w=majority'
 main().catch((err) => console.log(err));
