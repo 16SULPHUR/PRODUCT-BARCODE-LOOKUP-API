@@ -28,7 +28,7 @@ app.get("/", async (req, res) => {
 
     // addProductHandler(req, res)
     // const allProducts = await ProductDetails.find()
-    res.json(allProducts)
+    // res.json(allProducts)
     res.send("HHHHHH")
 });
 
