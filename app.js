@@ -32,7 +32,7 @@ app.get("/", async (req, res) => {
     addProductHandler(req, res)
     const allProducts = await ProductDetails.find()
     // res.json(allProducts)
-    res.send("index", allProducts)
+    res.send("index")
 });
 
 app.get("/p", async (req, res) => {
@@ -40,8 +40,8 @@ app.get("/p", async (req, res) => {
     console.log(req.query)
 
     // addProductHandler(req, res)
-    // const allProducts = await ProductDetails.find()
-    res.json({"allProducts": "pppppp"})
+    const allProducts = await ProductDetails.find()
+    res.json(allProducts)
 });
 
 app.listen(PORT, () => {
