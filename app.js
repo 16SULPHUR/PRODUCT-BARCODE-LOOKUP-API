@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 
 const DB = 'mongodb+srv://akpatil51340:%40Ankit2005@cluster0.lahzobm.mongodb.net/productLookup?retryWrites=true&w=majority'
-main().catch((err) => console.log(err));
+// main().catch((err) => console.log(err));
 
 async function main() {
   await mongoose.connect(DB);
@@ -27,9 +27,9 @@ app.get("/", async (req, res) => {
     console.log(req.body)
 
     // addProductHandler(req, res)
-    const allProducts = await ProductDetails.find()
+    // const allProducts = await ProductDetails.find()
     res.json(allProducts)
-    // res.json("HHHHHH")
+    res.json("HHHHHH")
 });
 
 app.listen(PORT, () => {
