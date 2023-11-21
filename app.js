@@ -29,7 +29,7 @@ app.get("/", async (req, res) => {
     // addProductHandler(req, res)
     // const allProducts = await ProductDetails.find()
     res.json(allProducts)
-    res.json("HHHHHH")
+    res.send("HHHHHH")
 });
 
 app.listen(PORT, () => {
