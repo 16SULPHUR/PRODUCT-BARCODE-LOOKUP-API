@@ -2,8 +2,8 @@ const express = require("express");
 // const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const bodyParser = require("body-parser");
-const ProductDetails = require("./models/productDetails");
-const addProductHandler = require("./controllers/addProductHandler")
+// const ProductDetails = require("./models/productDetails");
+// const addProductHandler = require("./controllers/addProductHandler")
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -11,13 +11,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-const DB = 'mongodb+srv://akpatil51340:%40Ankit2005@cluster0.lahzobm.mongodb.net/productLookup?retryWrites=true&w=majority'
+// const DB = 'mongodb+srv://akpatil51340:%40Ankit2005@cluster0.lahzobm.mongodb.net/productLookup?retryWrites=true&w=majority'
 // main().catch((err) => console.log(err));
 
-async function main() {
-  await mongoose.connect(DB);
-  console.log("connected to db");
-}
+// async function main() {
+//   await mongoose.connect(DB);
+//   console.log("connected to db");
+// }
 
 
 
