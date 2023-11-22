@@ -93,58 +93,84 @@ app.listen(PORT, () => {
 async function thirdTry(code, req, res) {
   try {
     console.log("TRY 333333333333333333");
-  const response = await axios.get(" https://www.brocade.io/api/items/" + code);
-  const data = response.data;
+    const response = await axios.get(
+      " https://www.brocade.io/api/items/" + code
+    );
+    const data = response.data;
 
-  if (data) {
-    console.log("GOT IN 3rd TRY");
-    res.send(data);
-  } else {
-    fourthTry(code, req,res);
-  }
+    if (data) {
+      console.log("GOT IN 3rd TRY");
+      res.send(data);
+    } else {
+      fourthTry(code, req, res);
+    }
   } catch (error) {
-    fourthTry(code, req,res);  
+    fourthTry(code, req, res);
   }
-  
 }
 
-async function fourthTry(code, req,res) {
+async function fourthTry(code, req, res) {
   try {
-    {
-      // 4TH TRY
+    console.log("TRY 44444444444444444444");
+    const axios = require("axios");
 
-      console.log("TRY 4444444444444444");
-      const axios = require("axios");
+    const options = {
+      method: "GET",
+      url: "https://big-product-data.p.rapidapi.com/gtin/" + code,
+      headers: {
+        "X-RapidAPI-Key": "28a1aa8d66msh6d641cebad4d626p1c4f86jsn6d655bf181a3",
+        "X-RapidAPI-Host": "big-product-data.p.rapidapi.com",
+      },
+    };
 
-      const options = {
-        method: "GET",
-        url: "https://barcodes1.p.rapidapi.com/",
-        params: {
-          query: code,
-        },
-        headers: {
-          "X-RapidAPI-Key":
-            "28a1aa8d66msh6d641cebad4d626p1c4f86jsn6d655bf181a3",
-          "X-RapidAPI-Host": "barcodes1.p.rapidapi.com",
-        },
-      };
+    try {
+      const response = await axios.request(options);
 
-      try {
-        const response = await axios.request(options);
-
-        if (response.data) {
-          console.log(response.data);
-          console.log("GOT IN 4TH TRY");
-          res.json(response.data);
-        } else {
-          // 5TH TRY
-
-          console.log("TRY 555555555555555");
-          
-        }
-      } catch (error) {
-        console.error(error);
+      if (response.data && !response.data.error) {
+        console.log("GOT IN 4TH TRY");
+        res.json(response.data);
+      } else {
+        fifthTRY(code, req, res);
       }
+    } catch (error) {}
+  } catch {
+    console.log("ERROR IN 4TH TRY");
+  }
+}
+
+async function fifthTRY(code, req, res) {
+  // 5TH TRY
+
+  try {
+
+    console.log("TRY 55555555555555555");
+    const axios = require("axios");
+
+    const options = {
+      method: "GET",
+      url: "https://barcodes1.p.rapidapi.com/",
+      params: {
+        query: code,
+      },
+      headers: {
+        "X-RapidAPI-Key": "28a1aa8d66msh6d641cebad4d626p1c4f86jsn6d655bf181a3",
+        "X-RapidAPI-Host": "barcodes1.p.rapidapi.com",
+      },
+    };
+
+    try {
+      const response = await axios.request(options);
+
+      if (response.data) {
+        console.log("GOT IN 5TH TRY");
+        res.json(response.data);
+      } else {
+        
+      }
+    } catch (error) {
+      console.error(error);
     }
-  } catch {}
+  } catch {
+    console.log("ERROR IN 5TH TRY");
+  }
 }
