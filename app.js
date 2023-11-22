@@ -148,7 +148,7 @@ async function fourthTry(code, req, res) {
 
     if (data && data.item_response.code == 200) {
       console.log("GOT IN 4th TRY");
-      addProductHandler(code,data[0])
+      addProductHandler(code,data)
       res.json(data);
     } else {
       // fifth TRY
