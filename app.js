@@ -43,23 +43,54 @@ app.get("/p", async (req, res) => {
 });
 
 app.get("/s", async (req, res) => {
+
+  // try ZERO 00000000000000
+  const match = await ProductDetails.find({code : req.query.code})
+
+  // console.log(match)
+  if(match[0]){
+    console.log("MATCH FOUND")
+    res.json(match[0])
+  }else{
+    console.log("NO MATCH")
+    firstTry(req.query.code,req,res)
+  }
+  
+});
+
+app.listen(PORT, () => {
+  console.log(`Example app listening on ${PORT}`);
+});
+
+
+async function firstTry(code,req,res){
   try {
     // FIRST TRY
     console.log("TRY 111111111111111111");
     const response = await axios.get(
-      "https://www.gtinsearch.org/api/items/" + req.query.code
+      "https://www.gtinsearch.org/api/items/" + code
     );
     const data = response.data;
 
     if (data[0]) {
       console.log("GOT IN 1ST TRY");
-      addProductHandler(req.query.code,data[0])
+      addProductHandler(code,data[0])
       res.json(data[0]);
     } else {
       // SECOND TRY
-      console.log("TRY 22222222222222222222222222");
+      secondTry(code,req,res)
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+async function secondTry(code,req,res){
+  // SECOND TRY 2222222222222222222222
+  console.log("TRY 22222222222222222222222222");
       const settings = {
-        url: "https://api.upcdatabase.org/product/" + req.query.code,
+        url: "https://api.upcdatabase.org/product/" + code,
         method: "GET",
         timeout: 0,
         headers: {
@@ -81,19 +112,11 @@ app.get("/s", async (req, res) => {
         .catch((error) => {
           console.error("Error fetching data 2nd:", error.response.data);
         });
-    }
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`Example app listening on ${PORT}`);
-});
+}
 
 async function thirdTry(code, req, res) {
   try {
+    // THIRD TRY 33333333333333
     console.log("TRY 333333333333333333");
     const response = await axios.get(
       " https://www.brocade.io/api/items/" + code
