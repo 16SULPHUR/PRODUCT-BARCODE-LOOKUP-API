@@ -1,9 +1,10 @@
 const ProductDetails = require("../models/productDetails");
 
-async function addProductHandler(data,req, res) {
+async function addProductHandler(code,data) {
 
     const newProduct = new ProductDetails({
-        data
+        "code" : code,
+        "data" : data
     });
 
     await newProduct.save().then(() => {

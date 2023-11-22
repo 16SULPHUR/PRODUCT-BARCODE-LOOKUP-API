@@ -5,17 +5,8 @@ const productDetailsSchema = new mongoose.Schema({
     type: Number,
     unique: true
   },
-  title:{
-    type: String
-  },
-  description:{
-    type: String
-  },
-  rating:{
-    type: String
-  },
-  images:{
-    type: Array
+  data:{
+    type: Object
   }
 });
 

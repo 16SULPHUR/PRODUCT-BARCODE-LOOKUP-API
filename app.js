@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, "./public")));
 
 const DB =
   "mongodb+srv://akpatil51340:%40Ankit2005@cluster0.lahzobm.mongodb.net/productLookup?retryWrites=true&w=majority";
-main().catch((err) => console.log(err));
+main().catch((err) => console.log(err));  
 
 async function main() {
   await mongoose.connect(DB);
@@ -28,7 +28,7 @@ async function main() {
 app.get("/", async (req, res) => {
   console.log(req.query);
 
-  addProductHandler(req, res);
+  // addProductHandler(code,req, res);
   const allProducts = await ProductDetails.find();
   // res.json(allProducts)
   res.send("index");
@@ -37,7 +37,7 @@ app.get("/", async (req, res) => {
 app.get("/p", async (req, res) => {
   console.log(req.query);
 
-  addProductHandler(req, res);
+  // addProductHandler(code,req, res);
   const allProducts = await ProductDetails.find();
   res.json(allProducts);
 });
@@ -53,7 +53,7 @@ app.get("/s", async (req, res) => {
 
     if (data[0]) {
       console.log("GOT IN 1ST TRY");
-      addProductHandler(data[0])
+      addProductHandler(req.query.code,data[0])
       res.json(data[0]);
     } else {
       // SECOND TRY
@@ -71,7 +71,7 @@ app.get("/s", async (req, res) => {
         .then((response) => {
           if (response.data.success) {
             console.log("GOT IN 2nd TRY");
-            addProductHandler(response.data)
+            addProductHandler(req.query.code,response.data)
             res.send(response.data);
           } else {
             // THIRD TRY
@@ -102,7 +102,7 @@ async function thirdTry(code, req, res) {
 
     if (data) {
       console.log("GOT IN 3rd TRY");
-      addProductHandler(data)
+      addProductHandler(code,data)
       res.send(data);
     } else {
       fourthTry(code, req, res);
@@ -131,7 +131,7 @@ async function fourthTry(code, req, res) {
 
       if (response.data && !response.data.error) {
         console.log("GOT IN 4TH TRY");
-        addProductHandler(response.data)
+        addProductHandler(code,response.data)
         res.json(response.data);
       } else {
         fifthTRY(code, req, res);
@@ -167,7 +167,7 @@ async function fifthTRY(code, req, res) {
 
       if (response.data) {
         console.log("GOT IN 5TH TRY");
-        addProductHandler(response.data)
+        addProductHandler(code,response.data)
         res.json(response.data);
       } else {
         
