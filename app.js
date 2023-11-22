@@ -137,31 +137,25 @@ async function thirdTry(code, req, res) {
 
 async function fourthTry(code, req, res) {
   try {
-    console.log("TRY 44444444444444444444");
-    const axios = require("axios");
+    // FOURTH TRY 4444444
+    console.log("TRY 44444444444");
+    const response = await axios.get(
+      "https://api.barcodespider.com/v1/lookup?token=e359b14ae59ff44b6380&upc="+code
+    );
+    const data = response.data;
 
-    const options = {
-      method: "GET",
-      url: "https://big-product-data.p.rapidapi.com/gtin/" + code,
-      headers: {
-        "X-RapidAPI-Key": "28a1aa8d66msh6d641cebad4d626p1c4f86jsn6d655bf181a3",
-        "X-RapidAPI-Host": "big-product-data.p.rapidapi.com",
-      },
-    };
+    console.log(data)
 
-    try {
-      const response = await axios.request(options);
-
-      if (response.data && !response.data.error) {
-        console.log("GOT IN 4TH TRY");
-        addProductHandler(code,response.data)
-        res.json(response.data);
-      } else {
-        fifthTRY(code, req, res);
-      }
-    } catch (error) {}
-  } catch {
-    console.log("ERROR IN 4TH TRY");
+    if (data && data.item_response.code == 200) {
+      console.log("GOT IN 4th TRY");
+      addProductHandler(code,data[0])
+      res.json(data);
+    } else {
+      // fifth TRY
+      fifthTRY(code,req,res)
+    }
+  } catch (error) {
+    fifthTRY(code,req,res)
   }
 }
 
@@ -188,12 +182,12 @@ async function fifthTRY(code, req, res) {
     try {
       const response = await axios.request(options);
 
-      if (response.data) {
+      if (response.data && !response.data.results) {
         console.log("GOT IN 5TH TRY");
         addProductHandler(code,response.data)
         res.json(response.data);
       } else {
-        
+        sixthTry(code,req,res)
       }
     } catch (error) {
       console.error(error);
@@ -202,3 +196,63 @@ async function fifthTRY(code, req, res) {
     console.log("ERROR IN 5TH TRY");
   }
 }
+
+async function sixthTry(code,req,res){
+  try {
+    console.log("TRY 666666666666666666666");
+    const axios = require("axios");
+
+    const options = {
+      method: "GET",
+      url: "https://big-product-data.p.rapidapi.com/gtin/" + code,
+      headers: {
+        "X-RapidAPI-Key": "28a1aa8d66msh6d641cebad4d626p1c4f86jsn6d655bf181a3",
+        "X-RapidAPI-Host": "big-product-data.p.rapidapi.com",
+      },
+    };
+
+    try {
+      const response = await axios.request(options);
+
+      if (response.data && !response.data.error) {
+        console.log("GOT IN 6TH TRY");
+        addProductHandler(code,response.data)
+        res.json(response.data);
+      } else {
+        res.json({"data": ""})
+      }
+    } catch (error) {}
+  } catch {
+    console.log("ERROR IN 6TH TRY");
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
