@@ -53,6 +53,7 @@ app.get("/s", async (req, res) => {
 
     if (data[0]) {
       console.log("GOT IN 1ST TRY");
+      addProductHandler(data[0])
       res.json(data[0]);
     } else {
       // SECOND TRY
@@ -70,6 +71,7 @@ app.get("/s", async (req, res) => {
         .then((response) => {
           if (response.data.success) {
             console.log("GOT IN 2nd TRY");
+            addProductHandler(response.data)
             res.send(response.data);
           } else {
             // THIRD TRY
@@ -100,6 +102,7 @@ async function thirdTry(code, req, res) {
 
     if (data) {
       console.log("GOT IN 3rd TRY");
+      addProductHandler(data)
       res.send(data);
     } else {
       fourthTry(code, req, res);
@@ -128,6 +131,7 @@ async function fourthTry(code, req, res) {
 
       if (response.data && !response.data.error) {
         console.log("GOT IN 4TH TRY");
+        addProductHandler(response.data)
         res.json(response.data);
       } else {
         fifthTRY(code, req, res);
@@ -163,6 +167,7 @@ async function fifthTRY(code, req, res) {
 
       if (response.data) {
         console.log("GOT IN 5TH TRY");
+        addProductHandler(response.data)
         res.json(response.data);
       } else {
         
