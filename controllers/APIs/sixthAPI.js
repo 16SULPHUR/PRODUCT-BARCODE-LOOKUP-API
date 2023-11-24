@@ -30,21 +30,26 @@ async function sixthTry(code,usefulData,req,res){
           response.data.properties.description.forEach(desc => {
             usefulData.description.push(desc)
           });
+          if(response.data.properties.features){
           response.data.properties.features.forEach(feature => {
             usefulData.features.push(feature)
-          });
+          });}
           response.data.stores.forEach(store => {
             usefulData.stores.push(store)
             usefulData.images.push(store.image)
           });
 
-        } else {
+          addProductHandler(code,usefulData)
+        res.json(usefulData)
+        } else{
+          addProductHandler(code,usefulData)
+          res.json(usefulData)
         }
 
-        addProductHandler(code,usefulData)
-        res.json(usefulData)
 
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     } catch {
       console.log("ERROR IN 6TH TRY");
     }
