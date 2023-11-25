@@ -3,28 +3,34 @@ const axios = require("axios");
 const secondTry = require("./secondAPI");
 
 async function firstTry(code, usefulData, req, res) {
+
   try {
-    // FIRST TRY
-    // console.log("TRY 111111111111111111");
-    // const response = await axios.get(
-    //   "https://www.gtinsearch.org/api/items/" + code
-    // );
-    // const data = response.data[0];
+    let response = await fetch("https://api.vegancheck.me/v0/product/4066600204404", { 
+  method: "POST"
+});
 
-    // if (data) {
-    //   console.log("GOT IN 1ST TRY");
+let data = await response.text();
+console.log("vegan api 1111111111111111111111111111111111111111111");
+console.log(data);
 
-    //   // usefulData.brand.push(data.brand_name)
-    //   // usefulData.size.push(data.size)
 
-    //   secondTry(code,usefulData,req,res)
-    // } else {
-    //   // SECOND TRY
-    // }
+
+// const response = await axios.get(
+//   "https://api.vegancheck.me/v0/product/8907234007831", { 
+//     method: "POST"
+//   }
+// );
+// const data = response.data;
+// console.log("vegan api 1111111111111111111111111111111111111111111");
+// console.log(data);
+
+
+
+
 
     secondTry(code, usefulData, req, res);
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error fetching data11111111111111111111111", error);
     res.status(500).send("Internal Server Error");
   }
 }

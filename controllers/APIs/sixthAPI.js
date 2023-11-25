@@ -5,12 +5,12 @@ async function sixthTry(code,usefulData,req,res){
       console.log("TRY 666666666666666666666");
   
       const options = {
-        method: "GET",
-        url: "https://big-product-data.p.rapidapi.com/gtin/" + code,
+        method: 'GET',
+        url: 'https://big-product-data.p.rapidapi.com/gtin/850028009338',
         headers: {
-          "X-RapidAPI-Key": "28a1aa8d66msh6d641cebad4d626p1c4f86jsn6d655bf181a3",
-          "X-RapidAPI-Host": "big-product-data.p.rapidapi.com",
-        },
+          'X-RapidAPI-Key': '510492ceb8mshd1a58aa9483c522p10c0d0jsn85dfb5250874',
+          'X-RapidAPI-Host': 'big-product-data.p.rapidapi.com'
+        }
       };
   
       try {
