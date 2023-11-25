@@ -1,5 +1,6 @@
 const axios = require("axios");
 const addProductHandler = require("../addProductHandler")
+const ProductDetails = require("../../models/productDetails")
 async function sixthTry(code,usefulData,req,res){
     try {
       console.log("TRY 666666666666666666666");
@@ -39,11 +40,11 @@ async function sixthTry(code,usefulData,req,res){
             usefulData.images.push(store.image)
           });
 
-          addProductHandler(code,usefulData)
-        res.json(usefulData)
+          const resp = await addProductHandler(code,usefulData)
+        res.json(resp)
         } else{
-          addProductHandler(code,usefulData)
-          res.json(usefulData)
+          const resp = await addProductHandler(code,usefulData)
+          res.json(resp)
         }
 
 

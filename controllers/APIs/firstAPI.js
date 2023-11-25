@@ -5,13 +5,13 @@ const secondTry = require("./secondAPI");
 async function firstTry(code, usefulData, req, res) {
 
   try {
-    let response = await fetch("https://api.vegancheck.me/v0/product/4066600204404", { 
-  method: "POST"
-});
+//     let response = await fetch("https://api.vegancheck.me/v0/product/4066600204404", { 
+//   method: "POST"
+// });
 
-let data = await response.text();
-console.log("vegan api 1111111111111111111111111111111111111111111");
-console.log(data);
+// let data = await response.text();
+// console.log("vegan api 1111111111111111111111111111111111111111111");
+// console.log(data);
 
 
 

@@ -7,9 +7,14 @@ async function addProductHandler(code,data) {
         "data" : data
     });
 
-    await newProduct.save().then(() => {
-        console.log("Product Added Successfully");
-      });
+    const savedProduct = await newProduct.save()
+    // .then(() => {
+    //     console.log("Product Added Successfully");
+    //   });
+
+   
+    console.log(savedProduct)
+      return savedProduct
 }
 
 module.exports = addProductHandler;
