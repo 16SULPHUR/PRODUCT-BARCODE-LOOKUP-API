@@ -27,33 +27,7 @@ async function main() {
   console.log("connected to db");
 }
 
-let usefulData = {
-  title: [],
-  description: [],
-  images: [],
-  stores: [],
-  brand: [],
-  size: [],
-  alias: [],
-  category: [],
-  features : [],
-  other: {
-    ingredients: [],
-    serving_per_container: [],
-    calories: [],
-    fat: [],
-    sodium: [],
-    potassium: [],
-    carbohydrate: [],
-    fiber: [],
-    sugar: [],
-    protein: [],
-    author: [],
-    publisher: [],
-    pages: [],
-    alcohol: [],
-  },
-};
+
 
 app.get("/", async (req, res) => {
   console.log(req.query);
@@ -73,6 +47,36 @@ app.get("/p", async (req, res) => {
 });
 
 app.get("/s", async (req, res) => {
+
+  let usefulData = {
+    title: [],
+    description: [],
+    images: [],
+    stores: [],
+    brand: [],
+    size: [],
+    alias: [],
+    category: [],
+    features : [],
+    other: {
+      ingredients: [],
+      serving_per_container: [],
+      calories: [],
+      fat: [],
+      sodium: [],
+      potassium: [],
+      carbohydrate: [],
+      fiber: [],
+      sugar: [],
+      protein: [],
+      author: [],
+      publisher: [],
+      pages: [],
+      alcohol: [],
+    },
+  };
+
+  
   // try ZERO 00000000000000
   const match = await ProductDetails.find({ code: req.query.code });
 
