@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const ProductDetails = require("./models/productDetails");
 const addProductHandler = require("./controllers/addProductHandler");
+const allProducts = require("./controllers/allProducts");
 const axios = require("axios");
 const cors = require("cors");
 const app = express();
@@ -39,11 +40,8 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/p", async (req, res) => {
-  console.log(req.query);
-
-  // addProductHandler(code,req, res);
-  const allProducts = await ProductDetails.find();
-  res.json(allProducts);
+  let products = await allProducts()
+  res.json({products: products});
 });
 
 app.get("/s", async (req, res) => {
@@ -76,7 +74,7 @@ app.get("/s", async (req, res) => {
     },
   };
 
-  
+
   // try ZERO 00000000000000
   const match = await ProductDetails.find({ code: req.query.code });
 
