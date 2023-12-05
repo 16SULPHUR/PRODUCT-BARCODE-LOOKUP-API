@@ -8,7 +8,7 @@ const productDetailsSchema = new mongoose.Schema({
   data:{
     type: Object
   }
-});
+}, { strict: false });
 
 const ProductDetails = mongoose.model("ProductDetails", productDetailsSchema);
 module.exports = ProductDetails;

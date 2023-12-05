@@ -18,3 +18,27 @@ async function addProductHandler(code,data) {
 }
 
 module.exports = addProductHandler;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

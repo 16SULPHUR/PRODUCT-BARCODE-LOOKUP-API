@@ -6,6 +6,7 @@ const path = require("path");
 const ProductDetails = require("./models/productDetails");
 const addProductHandler = require("./controllers/addProductHandler");
 const allProducts = require("./controllers/allProducts");
+const addDetails = require("./controllers/addDetails");
 const axios = require("axios");
 const cors = require("cors");
 const app = express();
@@ -86,6 +87,14 @@ app.get("/s", async (req, res) => {
     console.log("NO MATCH");
     firstTry(req.query.code, usefulData, req, res);
   }
+});
+
+app.post("/add", async (req, res) => {
+  addDetails(req,res)
+});
+
+app.get("/add", async (req, res) => {
+  addDetails(req,res)
 });
 
 app.listen(PORT, () => {
