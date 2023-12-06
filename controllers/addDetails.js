@@ -1,4 +1,5 @@
 const ProductDetails = require("../models/productDetails");
+const filterResponse = require("./filterResponse");
 
 async function addDetails(req, res) {
   const body = req.body;
@@ -70,7 +71,8 @@ async function addDetails(req, res) {
     );
 
     const pp = await ProductDetails.findOne({ code: body.code });
-    res.json(pp);
+    const filteredResponse = filterResponse(pp)
+    res.json(filteredResponse);
   } else {
     // Handle the case where the product is not found
     // res.status(404).json({ error: "Product not found" });

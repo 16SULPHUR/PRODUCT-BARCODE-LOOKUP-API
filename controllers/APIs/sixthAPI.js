@@ -1,6 +1,7 @@
 const axios = require("axios");
 const addProductHandler = require("../addProductHandler");
 const ProductDetails = require("../../models/productDetails");
+const filterResponse = require("../filterResponse");
 async function sixthTry(code, usefulData, req, res) {
   try {
     console.log("TRY 666666666666666666666");
@@ -46,9 +47,11 @@ async function sixthTry(code, usefulData, req, res) {
 
         }
         const resp = await addProductHandler(code, usefulData);
+        filterResponse(resp)
         res.json(resp);
       } else {
         const resp = await addProductHandler(code, usefulData);
+        filterResponse(resp)
         res.json(resp);
       }
     } catch (error) {

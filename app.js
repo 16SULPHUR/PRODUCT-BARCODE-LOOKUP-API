@@ -13,6 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const firstTry = require("./controllers/APIs/firstAPI");
+const filterResponse = require("./controllers/filterResponse");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -82,7 +83,8 @@ app.get("/s", async (req, res) => {
   // console.log(match)
   if (match[0]) {
     console.log("MATCH FOUND");
-    res.json(match[0]);
+    const filteredResponse = filterResponse(match[0])
+    res.json(filteredResponse);
   } else {
     console.log("NO MATCH");
     firstTry(req.query.code, usefulData, req, res);
