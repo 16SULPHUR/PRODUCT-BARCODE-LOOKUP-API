@@ -46,6 +46,15 @@ async function sixthTry(code, usefulData, req, res) {
           });
 
         }
+
+        usefulData.ratings = []
+        usefulData.reviews = []
+        usefulData.sustainabilityInfo = {}
+        usefulData.sustainabilityInfo.packingDetails = [];
+        usefulData.sustainabilityInfo.productRecyclability = [];
+        usefulData.sustainabilityInfo.ratings = [];
+        usefulData.sustainabilityInfo.recyclabilityDetails = [];
+
         const resp = await addProductHandler(code, usefulData);
         filterResponse(resp)
         res.json(resp);
