@@ -83,7 +83,9 @@ app.get("/s", async (req, res) => {
   // console.log(match)
   if (match[0]) {
     console.log("MATCH FOUND");
-    const filteredResponse = filterResponse(match[0])
+    const filteredResponse = await filterResponse(match[0])
+    console.log("product:::::::::");
+    console.log(filteredResponse);
     res.json(filteredResponse);
   } else {
     console.log("NO MATCH");

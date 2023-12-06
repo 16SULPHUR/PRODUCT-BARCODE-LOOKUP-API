@@ -51,8 +51,8 @@ async function sixthTry(code, usefulData, req, res) {
         res.json(resp);
       } else {
         const resp = await addProductHandler(code, usefulData);
-        filterResponse(resp)
-        res.json(resp);
+        const filteredResponse = await filterResponse(resp)
+        res.json(filteredResponse);
       }
     } catch (error) {
       console.log(error);

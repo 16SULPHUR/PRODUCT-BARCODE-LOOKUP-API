@@ -75,8 +75,8 @@ async function filterResponse(product) {
     product.data.sustainabilityInfo.recyclabilityDetails = new_recyclabilityDetails;
   
     // Now your product object is modified with null and blank values removed
-    console.log("product:::::::::");
-    console.log(product);
+    // console.log("product:::::::::");
+    // console.log(product);
 
     return product;
   }
